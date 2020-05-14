@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link rel="stylesheet" href="test.css">
+        <title>PokeTecha</title>
+    </head>
+    <body>
+        
+        <div class="form-group field">
+            <a class="home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </a>
+            <div class="text-wrapper ">
+                <input type="input" class="form-field" placeholder="Name" name="name" id='name' required />
+                <label for="name" class="form-label">Name</label>
+                <small class="error error-gone"></small>
+            </div>
+            <a class="search" onclick="validate();">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </a>
+            <a class="col">
+                <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+        </div>
+        <header class="gone">
+
+            <div class="content">
+                <h1>Welcome to Poketecha</h1>
+                <p>
+                    PokeTecha is a redesign of a project that I created 2 years ago.
+                    This is a website that uses the PokeAPI to get information of a provided pokemon.
+                    For now this is just my first version of this 'app' but I do plan on integrating more features
+                    into this site.
+                </p>
+                <button class="btn">Switch</button>
+            </div>
+            <!-- <div class="content">
+                <h1>Welcome to PokeTecha</h1>
+                <p>
+                    PokeTecha is a redesign of a project that I created 2 years ago.
+                    This is a website that uses the PokeAPI to get information of a provided pokemon.
+                    For now this is just my first version of this 'app' but I do plan on integrating more features
+                    into this site.
+                </p>
+                <form class="form-group field" style="display: flex; flex-direction: row; align-content:space-around;">
+                    <div class="text-wrapper">
+                        <input type="input" class="form-field" placeholder="Name" name="name" id='name' required />
+                        <label for="name" class="form-label">Name</label>
+                    </div>
+                    <label class="submit">
+                        <input type="submit" value="">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </label>
+                </form>
+            </div> -->
+        </header>
+        <section class="">
+            <!-- <button class="you">Switch</button> -->
+            
+            <div class="content">
+                <div class="asb">
+
+                    <button class="you">Toggle Moves</button>
+                </div>
+                <script defer>
+                    let d = document.querySelector('.you')
+                    d.addEventListener('click',()=>{
+                        let u = document.querySelector('#pokemon');
+                        let m = document.querySelector('#moves');
+                        u.classList.toggle('disappear');
+                        m.classList.toggle('disappear');
+                    })
+                </script>
+                <div id="pokemon">
+                    <div class="wi-25">
+                        <figure>
+                            <img src="" alt="" id="sprite">
+                            <!-- <div class="options">
+                                <a href="" class="male"><img src="" alt=""></a>
+                                <a href="" class="female"><img src="" alt=""></a>
+                            </div> -->
+                            <div id="types">
+                              
+                            </div>
+                            <figcaption id="pokeName" class="name">Lorem.</figcaption>
+                        </figure>
+                        <p id="pokeDesc">Lorem.</p>
+                        <div id="stats">
+                            <h3>Stats</h3>
+                            <div>
+                                <div class="yes">
+                                    <h5>HP</h5>
+                                    <p class="stat">80</p>   
+                                </div>
+                                <progress max="200" value="100"></progress>
+                            </div>
+                            <div>
+                                <div class="yes">
+                                    <h5>ATK</h5>
+                                    <p class="stat">80</p>   
+                                </div>
+                                <progress max="200" value="100"></progress>
+                            </div>
+                            <div>
+                                <div class="yes">
+                                    <h5>DEF</h5>
+                                    <p class="stat">80</p>   
+                                </div>
+                                <progress max="200" value="100"></progress>
+                            </div>
+                            <div>
+                                <div class="yes">
+                                    <h5>SP. ATK</h5>
+                                    <p class="stat">80</p>   
+                                </div>
+                                <progress max="200" value="100"></progress>
+                            </div>
+                            <div>
+                                <div class="yes">
+                                    <h5>SP. DEF</h5>
+                                    <p class="stat">80</p>   
+                                </div>
+                                <progress max="200" value="100"></progress>
+                            </div>
+                            <div>
+                                <div class="yes">
+                                    <h5>SPEED</h5>
+                                    <p class="stat">80</p>   
+                                </div>
+                                <progress max="200" value="100"></progress>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div id="pokeInfo" class="wi-75">
+                        <div id="abilities">
+                            <h2>Possible Abilities</h2>
+                            <div id="ability-container"></div>
+                        </div>
+                        
+                    </div>
+                    <!-- <div id="stats" class="wi-25">
+                        <h3>Stats</h3>
+                        <div>
+                            <div class="yes">
+                                <h5>HP</h5>
+                                <p class="stat">80</p>   
+                            </div>
+                            <progress max="200" value="100"></progress>
+                        </div>
+                        <div>
+                            <div class="yes">
+                                <h5>ATK</h5>
+                                <p class="stat">80</p>   
+                            </div>
+                            <progress max="200" value="100"></progress>
+                        </div>
+                        <div>
+                            <div class="yes">
+                                <h5>DEF</h5>
+                                <p class="stat">80</p>   
+                            </div>
+                            <progress max="200" value="100"></progress>
+                        </div>
+                        <div>
+                            <div class="yes">
+                                <h5>SP. ATK</h5>
+                                <p class="stat">80</p>   
+                            </div>
+                            <progress max="200" value="100"></progress>
+                        </div>
+                        <div>
+                            <div class="yes">
+                                <h5>SP. DEF</h5>
+                                <p class="stat">80</p>   
+                            </div>
+                            <progress max="200" value="100"></progress>
+                        </div>
+                        <div>
+                            <div class="yes">
+                                <h5>SPEED</h5>
+                                <p class="stat">80</p>   
+                            </div>
+                            <progress max="200" value="100"></progress>
+                        </div>
+                    </div> -->
+                </div>
+                <div id="moves" class="disappear">
+                
+                </div>
+            </div>
+        </section>
+        <!-- <section id="poke" class="gone">
+            <div id="pokemon" class="wi-25">
+                <figure>
+                    <img src="" alt="" id="sprite">
+                    <div class="options">
+                        <a class="male" ><img src="https://static.thenounproject.com/png/429451-200.png"  alt=""></a>
+                        <a class="female"><img src="https://static.thenounproject.com/png/429470-200.png" alt=""></a>
+                    </div>
+                    <div id="types">
+                        <img src="" alt=""
+                            class="type">
+                        <img src="" alt=""
+                            class="type">
+                    </div>
+                    <figcaption id="pokeName" class="name"></figcaption>
+                </figure>
+                <p id="pokeDesc"></p>
+            </div>
+            <div id="pokeInfo" class="wi-75">
+                <div id="abilities">
+                    <h2>Possibile Abilities</h2>
+                    <div id="ability-container">
+                    </div>
+                </div>
+                <div id="stats" class="wi-50">
+                    <h5 style="text-align: left;">Base Stats</h5>
+                    <table style="width: 100%;">
+                        <tr>
+                            <th>HP</th>
+                            <td class="stat">80</td>
+                            <td style="width: 100%;"><progress style="width:
+                                    100%;" max="200" value="100"></progress></td>
+                        </tr>
+                        <tr>
+                            <th>ATK</th>
+                            <td class="stat">80</td>
+                            <td style="width: 100%;"><progress style="width:
+                                    100%;" max="200" value="100"></progress></td>
+                        </tr>
+                        <tr>
+                            <th>DEF</th>
+                            <td class="stat">80</td>
+                            <td style="width: 100%;"><progress style="width:
+                                    100%;" max="200" value="100"></progress></td>
+                        </tr>
+                        <tr>
+                            <th>SP.ATK</th>
+                            <td class="stat">80</td>
+                            <td style="width: 100%;"><progress style="width:
+                                    100%;" max="200" value="100"></progress></td>
+                        </tr>
+                        <tr>
+                            <th>SP.DEF</th>
+                            <td class="stat">80</td>
+                            <td style="width: 100%;"><progress style="width:
+                                    100%;" max="200" value="100"></progress></td>
+                        </tr>
+                        <tr>
+                            <th>SPEED</th>
+                            <td class="stat">80</td>
+                            <td style="width: 100%;"><progress style="width: 100%;" max="200" value="100"></progress></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="moves"></div>
+            </section> -->
+
+            <script src="./assets/js/utils.js"></script>
+            <script src="./assets/js/scripts.js"></script>
+            <script src="./assets/js/test.js"></script>
+            
+        </body>
+    </html>
