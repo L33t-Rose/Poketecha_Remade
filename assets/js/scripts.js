@@ -15,44 +15,49 @@ async function getPokeData(pokemon) {
   //Caching and checking local storage
   if (localStorage.getItem(pokemon) != null) {
     let data = JSON.parse(localStorage.getItem(pokemon))
-  
+
     // window.dispatchEvent(showEvent);
     gun(data);
   }
   else {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-    if(!res.ok){
+    if (!res.ok) {
       window.dispatchEvent(failedEvent);
       return;
     }
 
     const { name, id, abilities, base_experience, moves, sprites, stats, types, species } = await res.json();
-    
+
     //These async api calls. Previously doing this synchronously made website take 7 seconds
     //to finish getting data
-    const [abilityInfo,moveInfo,specInfo] = await Promise.all([
-      Promise.resolve(abilities).then((abils)=>{
-         return Promise.all(abils.map(function(a){
-           let url = a["ability"].url;
-           return fetch(url).then(res=>res.json()).then(({name,effect_entries})=>{return {name,effect_entries}})
-         }))
-      }).then(d=>d),
-      Promise.resolve(moves).then((moveIn)=>{
-        return Promise.all(moveIn.map(function({move,version_group_details}){
+    const [abilityInfo, moveInfo, specInfo] = await Promise.all([
+      Promise.resolve(abilities).then((abils) => {
+        return Promise.all(abils.map(function (a) {
+          let url = a["ability"].url;
+          return fetch(url)
+            .then(res => res.json())
+            .then(({ name, effect_entries }) => { return { name, effect_entries } })
+        }))
+      }).then(d => d),
+
+      Promise.resolve(moves).then((moveIn) => {
+        return Promise.all(moveIn.map(function ({ move, version_group_details }) {
           let levelLearned = version_group_details[0]['level_learned_at'];
           return fetch(move.url)
-            .then(res=>res.json())
-            .then(({accuracy,name,damage_class,effect_chance,effect_entries,power,pp,type})=>{
-              return { accuracy, name, damage_class, effect_chance, effect_entries, power, pp, type, levelLearned};
+            .then(res => res.json())
+            .then(({ accuracy, name, damage_class, effect_chance, effect_entries, power, pp, type }) => {
+              return { accuracy, name, damage_class, effect_chance, effect_entries, power, pp, type, levelLearned };
             })
         }))
       }),
-      fetch(species.url).then(res=>res.json()).then(({base_happiness,capture_rate,flavor_text_entries}) => {
-        const pokeDesc = flavor_text_entries[2]['flavor_text'].replace('/\n/g',' ')
-        return {base_happiness,capture_rate,pokeDesc}
+
+      fetch(species.url).then(res => res.json()).then(({ base_happiness, capture_rate, flavor_text_entries }) => {
+        const pokeDesc = flavor_text_entries[2]['flavor_text'].replace('/\n/g', ' ')
+        return { base_happiness, capture_rate, pokeDesc }
       })
     ])
-    let data = {name,id,abilityInfo:abilityInfo,...specInfo,moveInfo:moveInfo,sprites,stats,types,base_experience}
+    
+    let data = { name, id, abilityInfo: abilityInfo, ...specInfo, moveInfo: moveInfo, sprites, stats, types, base_experience }
 
     gun(data);
     // window.dispatchEvent(showEvent);
@@ -73,14 +78,14 @@ function gun(data) {
     base_happiness, capture_rate, pokeDesc } = data;
 
   //Sprite
-  sprite.setAttribute('src', sprites.front_default); 
+  sprite.setAttribute('src', sprites.front_default);
   pokeName.textContent = name;
   desc.textContent = pokeDesc;
   const type = types;
   for (let i = 0; i < type.length; i++) {
     const t = type[i];
     let img = document.createElement('img');
-    img.className ="type"
+    img.className = "type"
     img.setAttribute('src', `assets/images/${t.type['name']}.png`);
     typeImages.appendChild(img);
     // typeImages[i].setAttribute('src', `assets/images/${t.type['name']}.png`);
@@ -92,7 +97,7 @@ function gun(data) {
     abilityHTML.className = "ability";
 
     abilityHTML.innerHTML = `
-      <h3 class="name">${name.replace('-',' ')}</h3>
+      <h3 class="name">${name.replace('-', ' ')}</h3>
       <p>${effect_entries[0]['short_effect']}</p>
     `
     abilContainer.appendChild(abilityHTML);
@@ -108,8 +113,8 @@ function gun(data) {
     statElems[i].textContent = base_stat;
     progStats[i].value = base_stat.toString();
   }
-  
- 
+
+
 
   moveInfo.forEach((move) => {
     const { accuracy, name, damage_class, effect_chance, effect_entries, power, pp, type, levelLearned } = move;
@@ -129,7 +134,7 @@ function gun(data) {
       `
     moveSection.appendChild(moveElem);
   })
-  
+
 
   window.dispatchEvent(reqFinished);
   window.dispatchEvent(showEvent);
