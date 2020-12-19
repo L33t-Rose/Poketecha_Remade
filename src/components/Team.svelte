@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  // import { onMount } from "svelte";
 
   export let data;
   export let index;
@@ -8,15 +8,15 @@
 
   console.log($store["teams"][index].mons);
 
-  let open = false;
-  let color;
+  // let open = false;
+  // let color;
 
-  onMount(() => {
-    color = Math.floor(Math.random() * 16777215)
-      .toString(16)
-      .padStart(6, 0);
-    console.log(index, ": ", color);
-  });
+  // onMount(() => {
+  //   color = Math.floor(Math.random() * 16777215)
+  //     .toString(16)
+  //     .padStart(6, 0);
+  //   console.log(index, ": ", color);
+  // });
   function addTeam() {
     if (teamName) {
       let d = teamSchema();
@@ -70,11 +70,11 @@
   <div />
 </div> -->
 
-<div class="w-full md:w-56 h-64 md:mr-2 relative red-card">
+<div class="w-full md:w-56 h-64 md:mr-2 relative red-card shadow-lg">
   <div class="flex flex-row w-full absolute rounded-t-md top-0 left-0">
     <h1 class="text-lg flex-1 pl-3 pt-3 pb-1 font-bold ">{data.name}</h1>
     <div
-      class="w-32 md:w-24 h-9  bg-red-400 rounded-full flex flex-row justify-center items-center offset z-10">
+      class="w-32 md:w-24 h-9 shadow- bg-red-400 rounded-full flex flex-row justify-center items-center offset z-10">
       <button
         type="button"
         on:click={(e) => removeTeam(data.name)}
