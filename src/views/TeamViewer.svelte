@@ -16,10 +16,20 @@
 
   function addTeam() {
     if (teamName) {
-      let d = teamSchema();
-      d.name = teamName;
-      $store["teams"] = [...$store.teams, d];
-      teamName = "";
+
+      const exists = $store["teams"].every(({name},i)=>{
+        return name !== teamName;
+      })
+
+      if(exists){
+        let d = teamSchema();
+        d.name = teamName;
+        $store["teams"] = [...$store.teams, d];
+        teamName = "";
+      }
+      else{
+        alert("It already exists!!!");
+      }
     }
   }
 </script>
@@ -47,7 +57,7 @@
       </form>
       <div class="red-card w-full h-24 md:mr-2">
         <svg
-          class="relative w-20 h-20 center text-red-500"
+          class="relative w-20 h-20 center text-red-400"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"><path
@@ -55,7 +65,7 @@
             d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
             clip-rule="evenodd" /></svg>
       </div>
-      
+
         {#each $store['teams'] as i, index}
           <Team data={i} {index} />
         {/each}

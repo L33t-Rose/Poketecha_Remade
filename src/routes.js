@@ -2,7 +2,7 @@ import Home from './views/Home.svelte';
 import Team from './views/TeamViewer.svelte';
 import Info from './views/Info.svelte';
 
-export const routes = [
+let routes = [
     {
         name: '/',
         component:Home,
@@ -15,4 +15,6 @@ export const routes = [
         name:'/info',
         component: Info
     }
-]
+];
+
+export default routes;
