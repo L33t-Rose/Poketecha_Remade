@@ -38,6 +38,10 @@
 	  @apply bg-red-500;
 	  outline:none;
 	}
+
+	body.noscroll{
+		overflow:hidden;
+	}
   
 </style>
 <Router {routes} />

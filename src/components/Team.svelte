@@ -35,7 +35,7 @@
 </script>
 
 
-<div class="w-full md:w-56 h-64 md:mr-2 relative red-card shadow-lg">
+<div class="w-full md:w-56 h-64 md:mr-6 relative red-card shadow-lg">
   <div class="flex flex-row w-full absolute rounded-t-md top-0 left-0">
     <h1 class="text-xl flex-1 pl-3 pt-3 pb-1 font-bold ">{data.name}</h1>
     <div
